@@ -1,0 +1,21 @@
+$item-color: rgba(216, 22, 116, 0.834);
+.fa-ban {
+  font-size: 8rem;
+  -webkit-text-stroke: 3px #ffffff;
+  -webkit-text-fill-color: transparent;
+}
+.btn-outline-danger {
+  border-radius: 25px;
+  margin-bottom: 30px;
+  color: $item-color;
+  border-color: $item-color;
+
+  &:hover {
+    background-color: $item-color;
+    color: white;
+  }
+}
+
+div {
+  margin-top: 40px;
+}

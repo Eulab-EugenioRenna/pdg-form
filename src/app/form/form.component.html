@@ -1,0 +1,134 @@
+<form class="container row text-center justify-content-center m-0" (ngSubmit)="submit()" [formGroup]="formSummerCamp">
+  <div class="form-group col-6">
+    <label for="nome">Nome <span>*</span></label>
+    <input type="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome" required>
+  </div>
+  <div class="form-group col-6">
+    <label for="cognome">Cognome <span>*</span></label>
+    <input type="text" class="form-control" id="cognome" placeholder="Cognome" formControlName="cognome" required>
+  </div>
+  <div class="form-group col-6">
+    <label for="email">Email <span>*</span></label>
+    <input type="email" class="form-control" id="email" placeholder="name@example.com" formControlName="email" required>
+    <p>Inserire una email valida</p>
+  </div>
+  <div class="form-group col-6">
+    <label for="age">Età <span>*</span></label>
+    <input type="number" class="form-control" id="age" placeholder="18" formControlName="eta" required min="10"
+      max="29">
+    <p>Età comprese dai 10 ai 29 anni</p>
+  </div>
+  <div class="form-group col-6">
+    <label for="tel">Numero di telefono <span>*</span></label>
+    <input type="tel" class="form-control" id="tel" placeholder="000-0000000" formControlName="tel1" required>
+    <p>Inserire un numero di telefono valido</p>
+  </div>
+  <div class="form-group col-6">
+    <label for="tel">Numero di telefono - Secondo Genitore</label>
+    <input type="tel" class="form-control" id="tel" placeholder="000-0000000" formControlName="tel2">
+    <p>Se minorenne inserire il numero di telefono dI ENTRAMBI i genitori</p>
+  </div>
+  <div class="form-group col-6">
+    <legend>Sesso: <span>*</span></legend>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="sesso" id="sesso1" value="Maschio" formControlName="sesso"
+        required>
+      <label class="form-check-label" for="sesso1">Maschio</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="sesso" id="sesso2" value="Femmina" formControlName="sesso"
+        required>
+      <label class="form-check-label" for="sesso2">Femmina</label>
+    </div>
+  </div>
+  <div class="form-group col-6">
+    <legend>Sono munito di materassino: <span>*</span></legend>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="materassino" id="materassino1" value="Si"
+        formControlName="materassino" required>
+      <label class="form-check-label" for="materassino1">Si</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="materassino" id="materassino2" value="No"
+        formControlName="materassino" required>
+      <label class="form-check-label" for="materassino2">No</label>
+    </div>
+  </div>
+  <div class="form-group col-12">
+    <label for="iscrizioni">Numero Prenotazioni: <span>*</span></label>
+    <input type="number" value="1" id="iscrizioni" class="form-control" required min="1" max="5"
+      formControlName="prenotazioni">
+    <p>Numero di prenotazioni massimo = 5</p>
+  </div>
+  <div class="form-group col-6">
+    <label for="altro">Allergie, intolleranze:</label>
+    <textarea class="form-control" id="altro" formControlName="allergie"></textarea>
+    <p>Per più prenotazioni<br>
+      Esempio: Luca Rossi - Intollerante Lattosio, Gianni Verdi - Nessuna intolleranza...</p>
+  </div>
+  <div class="form-group col-6">
+    <label for="altro">Altro:</label>
+    <textarea class="form-control" id="altro" formControlName="altro"></textarea>
+    <p>Per più prenotazioni<br>
+      Esempio: Luca Rossi - No materassino, Gianni Verdi - Si Materassino...</p>
+  </div>
+  <p class="col-12">Dopo aver compilato tutti i campi, entra nell'area privata della tua banca personale e
+    fai un bonifico a Parola
+    della Grazia Gela ETS di importo €40,00 a persona e allega qui la tua ricevuta del bonifico</p>
+  <div class="input-group col-12">
+    <label class="input-group-text" for="bonifico">Bonifico: <span>*</span></label>
+    <input class="form-control h-100" type="file" id="bonifico" (change)="toBase64($event)" required
+      accept="image/png, image/gif, image/jpeg" formControlName="bonifico">
+  </div>
+  <p>Inserire lo screenshot del bonifico in formato immagine</p>
+  <div class="input-group col-12 my-2">
+    <div class="input-group-text">
+      <input type="checkbox" class="form-control" style="min-height: 30px; min-width: 30px;" name="media" id="media"
+        formControlName="media">
+    </div>
+    <p class="form-control text-dark h-100 ">
+      Acconsento al trattamento dei miei dati personali e all'utilizzo della mia immagine durante l'evento per scopi di
+      pubblicazione sui social media e sui canali di comunicazione relativi alla conferenza.<br>
+
+  </div>
+  <div class="input-group col-12 my-2">
+    <div class="input-group-text">
+      <input type="checkbox" class="form-control" style="min-height: 30px; min-width: 30px;" name="privacy" id="privacy"
+        required formControlName="privacy">
+    </div>
+    <p class="form-control text-dark h-100 ">
+      Con la sottoscrizione dichiaro di esonerare e sollevare da ogni responsabilità civile e penale l’associazione
+      <strong>Parola della Grazia Gela</strong> derivante dalla permanenza, dal soggiorno e dalla partecipazione di
+      nostro/a figlio/a
+      minore alle
+      attività proposte dal gruppo <strong>PDG Young Gela</strong>, per gli eventi incidentali o infortuni subiti ed in
+      conseguenza,
+      danni
+      cagionati a sé o a terzi ed a malori (incluso il decesso o l’invalidità permanente) connessi all’espletamento
+      delle attività e all’uso degli impianti e delle attrezzature, ivi compresi gli incidenti e infortuni derivanti di
+      altri partecipanti e a noi pregiudizievoli. <br>
+      Attraverso l'iscrizione dichiaro di impegnarmi a comunicare i contenuti dell'informativa anche ai propri
+      familiari/conviventi di cui comunichi i dati all'esclusivo fine di porre il titolare in condizioni di ottemperare
+      alle norme di legge. In caso di minore confermo che chi sta effettuando l'iscrizione è un adulto con patria
+      potestà sul minore che sto iscrivendo.
+      Dichiaro inoltre di rinunciare a qualsiasi richiesta di risarcimento e di rimborso presenti o che si potrebbero
+      rivendicare in futuro nei confronti di <strong>Parola della Grazia Gela</strong> e del suo legale rappresentante
+      nonché il
+      <strong>Dott. La Spina Giuseppe.</strong> <br>
+      Pertanto esonero <strong>Parola della Grazia Gela</strong> da ogni responsabilità e tutte le azioni ad essa
+      relative, cause e
+      qualsivoglia
+      tipo di procedimento giudiziario e/o arbitrale relativi al rischio di infortuni, risarcimento danni a persone e/o
+      cose di terzi, danneggiamenti alle attrezzature e al rischio di smarrimenti d’effetti personali per furto o
+      qualsivoglia ragione, salvo i limiti inderogabili di legge.<span>*</span><br>
+    </p>
+  </div>
+
+  <div class="form-group col-12 mb-5 p-0">
+
+    <button class="btn btn-light m-1" type="submit" [disabled]="formSummerCamp.invalid">Iscriviti</button>
+
+    <button class="btn btn-warning m-1" type="reset" (click)="reset()">Reset</button>
+  </div>
+
+</form>

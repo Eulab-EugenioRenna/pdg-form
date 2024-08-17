@@ -1,0 +1,47 @@
+<div class="table">
+  <table border="2px">
+    <tr>
+      <th>Nome</th>
+      <th>Età</th>
+      <th>Email</th>
+      <th>Telefono</th>
+      <th>Sesso</th>
+      <th>Materassino</th>
+      <th>N° prenotazioni</th>
+      <th>Note</th>
+      <th>Consenso Media</th>
+      <th>Consenso Responsabilità</th>
+      <th>Allegato Bonifico</th>
+    </tr>
+    @for ( user of iscrizioni$ | async ; track user) {
+    <tr>
+      <td class="card-text"> {{ user['nome']}} - {{user['cognome'] }}</td>
+      <td class="card-text"> {{ user['eta'] }}</td>
+      <td class="card-text"> {{ user['email'] }}</td>
+      <td class="card-text"> {{ user['tel1'] }}-{{ user['tel2'] }}</td>
+      <td class="card-text"> {{ user['sesso']}}</td>
+      <td class="card-text"> {{ user['materassino']}}</td>
+      <td class="card-text"> {{ user['prenotazioni'] }} </td>
+      <td class="card-text"> {{ user['altro'] }}</td>
+      <td class="card-text"> @if (user['media']) {
+        ✅
+        }</td>
+      <td class="card-text"> @if (user['privacy']) {
+        ✅
+        }</td>
+      <td class="card-text">
+        <p>Totale da pagare: {{40 * user['prenotazioni'] }} €</p>
+        <hr class="bg-white">
+        @if (user['bonifico'] ) {
+        <a (click)="open(user['bonifico'])">
+
+          <img [src]="user['bonifico']" alt="" width="auto" height="50px">
+        </a>
+        }@else {
+        No Allegato !
+        }
+      </td>
+    </tr>
+    }
+  </table>
+</div>
