@@ -1,3 +1,13 @@
+<div class="row m-1">
+  @if (iscrizioni$ | async; as iscrizioni) {
+  <h4>Numero righe: {{iscrizioni.length}} -&nbsp;</h4>
+
+  <h4> Numero partecipanti: {{numeroPartecipanti(iscrizioni)}} -&nbsp;</h4>
+  <h4> Totale: {{numeroPartecipanti(iscrizioni) * 45}} €</h4>
+
+  }
+</div>
+
 <div class="table">
   <table border="2px">
     <tr>
@@ -9,6 +19,7 @@
       <th>Materassino</th>
       <th>N° prenotazioni</th>
       <th>Note</th>
+      <th>Allergie</th>
       <th>Consenso Media</th>
       <th>Consenso Responsabilità</th>
       <th>Allegato Bonifico</th>
@@ -23,6 +34,13 @@
       <td class="card-text"> {{ user['materassino']}}</td>
       <td class="card-text"> {{ user['prenotazioni'] }} </td>
       <td class="card-text"> {{ user['altro'] }}</td>
+      @if(user['allergie']){
+
+      <td class="card-text"> {{ user['allergie'] }}</td>
+      }@else {
+      <td class="card-text">Nessuna</td>
+
+      }
       <td class="card-text"> @if (user['media']) {
         ✅
         }</td>
@@ -30,7 +48,7 @@
         ✅
         }</td>
       <td class="card-text">
-        <p>Totale da pagare: {{40 * user['prenotazioni'] }} €</p>
+        <p>Totale da pagare: {{45 * user['prenotazioni'] }} €</p>
         <hr class="bg-white">
         @if (user['bonifico'] ) {
         <a (click)="open(user['bonifico'])">

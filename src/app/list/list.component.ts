@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FirestoreService } from '../firestore.service';
 import { CommonModule } from '@angular/common';
+import { User } from '../model/user';
+import { DocumentData } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-list',
@@ -12,6 +14,14 @@ import { CommonModule } from '@angular/common';
 export class ListComponent {
   constructor(private fs: FirestoreService) {}
   iscrizioni$ = this.fs.getUser$();
+
+  numeroPartecipanti(iscrizioni: DocumentData[]) {
+    let numeroPartecipanti = 0;
+    iscrizioni.forEach((user) => {
+      numeroPartecipanti = numeroPartecipanti + user!['prenotazioni'];
+    });
+    return numeroPartecipanti;
+  }
 
   open(url: string) {
     const newTab = window.open(url, '_blank');

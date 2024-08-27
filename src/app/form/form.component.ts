@@ -9,11 +9,12 @@ import { FirestoreService } from '../firestore.service';
 import { User } from '../model/user';
 import { Router } from '@angular/router';
 import { MailService } from '../mail.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',
 })
@@ -43,6 +44,8 @@ export class FormComponent {
     privacy: new FormControl('', [Validators.requiredTrue]),
     bonifico: new FormControl('', [Validators.required]),
   });
+
+  
   base64?: string;
 
   toBase64(event: any) {

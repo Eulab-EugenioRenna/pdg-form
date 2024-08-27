@@ -2,6 +2,7 @@
   <div class="form-group col-6">
     <label for="nome">Nome <span>*</span></label>
     <input type="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome" required>
+    <p>Per più prenotazioni inserire solo un nome ed utilizzare la casella <strong>"Altro"</strong> </p>
   </div>
   <div class="form-group col-6">
     <label for="cognome">Cognome <span>*</span></label>
@@ -24,9 +25,9 @@
     <p>Inserire un numero di telefono valido</p>
   </div>
   <div class="form-group col-6">
-    <label for="tel">Numero di telefono - Secondo Genitore</label>
+    <label for="tel">Numero di telefono Secondo Genitore</label>
     <input type="tel" class="form-control" id="tel" placeholder="000-0000000" formControlName="tel2">
-    <p>Se minorenne inserire il numero di telefono dI ENTRAMBI i genitori</p>
+    <p>Se minorenne inserire il numero di telefono dI ENTRAMBI i genitori utilizzando solo i due campi.</p>
   </div>
   <div class="form-group col-6">
     <legend>Sesso: <span>*</span></legend>
@@ -61,20 +62,40 @@
     <p>Numero di prenotazioni massimo = 5</p>
   </div>
   <div class="form-group col-6">
-    <label for="altro">Allergie, intolleranze:</label>
-    <textarea class="form-control" id="altro" formControlName="allergie"></textarea>
-    <p>Per più prenotazioni<br>
-      Esempio: Luca Rossi - Intollerante Lattosio, Gianni Verdi - Nessuna intolleranza...</p>
+    <label for="allergie">Allergie, intolleranze:</label>
+    <textarea class="form-control" id="allergie" formControlName="allergie"
+      placeholder="Esempio: Luca Rossi - Intollerante Lattosio, Gianni Verdi - Nessuna intolleranza..."></textarea>
+    <p>Per più prenotazioni
+    </p>
   </div>
   <div class="form-group col-6">
-    <label for="altro">Altro:</label>
-    <textarea class="form-control" id="altro" formControlName="altro"></textarea>
-    <p>Per più prenotazioni<br>
-      Esempio: Luca Rossi - No materassino, Gianni Verdi - Si Materassino...</p>
+    <label for="altro">Elenco Prenotazioni - Note Varie:</label>
+    <textarea class="form-control" id="altro" formControlName="altro"
+      placeholder="Esempio: Luca Rossi - No materassino, Gianni Verdi - Si Materassino..."></textarea>
+    <p>Usare per più prenotazioni o per informazioni</p>
   </div>
-  <p class="col-12">Dopo aver compilato tutti i campi, entra nell'area privata della tua banca personale e
-    fai un bonifico a Parola
-    della Grazia Gela ETS di importo €40,00 a persona e allega qui la tua ricevuta del bonifico</p>
+  <hr class="col-12 bg-white">
+  <h5 class="col-12 my-3">IMPORTO: <strong>{{(formSummerCamp.value.prenotazioni! * 45)}} €</strong> </h5>
+  <h5 class="col-12 my-3">IBAN: <strong>IT17Y0306909606100000010202</strong> </h5>
+  <h5 class="col-12 my-3">INTESTATO A: <strong class="text-capitalize">Chiesa Missione Cristiana Carismatica
+      Gela</strong>
+  </h5>
+  @if (formSummerCamp.value.nome && formSummerCamp.value.cognome){
+  <h5 class="col-12 my-3">CAUSALE: <strong>Donazione Summer Camp
+      {{formSummerCamp.value.nome || '( Nome' }}
+      {{formSummerCamp.value.cognome || 'Cognome )' }} </strong>
+  </h5>
+
+  }@else {
+  <h5 class="col-12 my-3">CAUSALE: <strong class="text-capitalize">Donazione Summer Camp (Nome Cognome del
+      partecipante)</strong>
+  </h5>
+
+  }
+  <p class="col-12 mt-5">Dopo aver compilato tutti i campi, entra nell'area privata della tua banca personale e
+    fai un bonifico a CHIESA MISSIONE CRISTIANA CARISMATICA GELA e allega qui la tua
+    ricevuta del
+    bonifico</p>
   <div class="input-group col-12">
     <label class="input-group-text" for="bonifico">Bonifico: <span>*</span></label>
     <input class="form-control h-100" type="file" id="bonifico" (change)="toBase64($event)" required
@@ -126,9 +147,9 @@
 
   <div class="form-group col-12 mb-5 p-0">
 
-    <button class="btn btn-light m-1" type="submit" [disabled]="formSummerCamp.invalid">Iscriviti</button>
+    <button class="btn btn-light m-1" type="reset" (click)="reset()">Reset</button>
+    <button class="btn btn-warning m-1" type="submit" [disabled]="formSummerCamp.invalid">Iscriviti</button>
 
-    <button class="btn btn-warning m-1" type="reset" (click)="reset()">Reset</button>
   </div>
 
 </form>
